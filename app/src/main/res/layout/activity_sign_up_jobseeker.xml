@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpJobseeker"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="20dp">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"/>
+
+    <TextView
+        android:id="@+id/txtSignUpJobSeeker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:text="SIGN UP - JOBSEEKER"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="fill_horizontal|center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:paddingHorizontal="10dp"/>
+
+        <EditText
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:textAlignment="textStart"
+            android:paddingHorizontal="10dp"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="E-mail"
+        android:paddingBottom="20dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:paddingBottom="20dp"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:paddingBottom="20dp"
+        android:inputType="textPassword"/>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:text="I accept the Terms of Use and Privacy Policy"
+        android:layout_marginBottom="20dp"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="120dp"
+        android:text="SIGN UP" />
+
+</LinearLayout>
