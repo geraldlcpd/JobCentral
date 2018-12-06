@@ -12,8 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="155dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/btn_star"
-        tools:layout_editor_absoluteY="43dp" />
+        app:srcCompat="@drawable/logo"
+        tools:layout_editor_absoluteY="43dp"
+        android:layout_marginBottom="20dp"/>
 
 
     <Button

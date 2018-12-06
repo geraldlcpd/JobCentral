@@ -25,7 +25,8 @@
             android:name=".Login"
             android:label="@string/title_activity_login" />
         <activity android:name=".SignUpJobseeker" />
-        <activity android:name=".SignUpRecruiter"></activity>
+        <activity android:name=".SignUpRecruiter" />
+        <activity android:name=".CVSubmission"></activity>
     </application>
 
 </manifest>
