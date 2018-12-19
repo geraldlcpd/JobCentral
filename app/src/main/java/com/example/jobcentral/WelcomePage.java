@@ -16,8 +16,8 @@ public class WelcomePage extends AppCompatActivity {
     Intent moveToLogin, moveToJobseeker, moveToRecruiter;
 
 
-    String [] userTests = {"User 1", "User 2", "User 3"};
-    String [] uNames = {"Name 1", "Name 2", "Name 3"};
+    String [] userTests = {"Name", "Username", "Password"};
+    String [] uNames = {"John", "johnsmith", "john123"};
     FirebaseDatabase dbJobCentral = FirebaseDatabase.getInstance();
     FirebaseDatabase dbTest = FirebaseDatabase.getInstance();
     DatabaseReference dbUser = dbJobCentral.getReference("USER");
@@ -32,8 +32,10 @@ public class WelcomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
 
+
+        // Sample code
         DatabaseReference dbTestVal;
-        String firstPath = "message";
+        String firstPath = "message/newUser";
         String secondPath, userName;
         String finalPath = "";
         for (int i = 0 ; i < userTests.length; i ++)
@@ -47,6 +49,7 @@ public class WelcomePage extends AppCompatActivity {
 
         }
 
+        // End of Sample data submission
 
         dbUser.setValue("");
         dbCV.setValue("");
