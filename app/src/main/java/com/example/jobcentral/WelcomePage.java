@@ -15,15 +15,44 @@ public class WelcomePage extends AppCompatActivity {
     Button btnLogin, btnJobseeker, btnRecruiter;
     Intent moveToLogin, moveToJobseeker, moveToRecruiter;
 
+
+    String [] userTests = {"User 1", "User 2", "User 3"};
+    String [] uNames = {"Name 1", "Name 2", "Name 3"};
     FirebaseDatabase dbJobCentral = FirebaseDatabase.getInstance();
-    DatabaseReference db1 = dbJobCentral.getReference("message");
+    FirebaseDatabase dbTest = FirebaseDatabase.getInstance();
+    DatabaseReference dbUser = dbJobCentral.getReference("USER");
+    DatabaseReference dbCV = dbJobCentral.getReference("CV");
+    DatabaseReference dbJob = dbJobCentral.getReference("JOB");
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
 
-        db1.setValue("Hello World!");
+        DatabaseReference dbTestVal;
+        String firstPath = "message";
+        String secondPath, userName;
+        String finalPath = "";
+        for (int i = 0 ; i < userTests.length; i ++)
+        {
+
+            secondPath = userTests[i];
+            userName = uNames[i];
+            finalPath = firstPath + "/" + secondPath;
+            dbTestVal = dbTest.getReference(finalPath);
+            dbTestVal.setValue(userName);
+
+        }
+
+
+        dbUser.setValue("");
+        dbCV.setValue("");
+        dbJob.setValue("");
+
+
 
         btnJobseeker = findViewById(R.id.btnJobseeker);
         btnRecruiter = findViewById(R.id.btnRecruiter);
