@@ -8,4 +8,38 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Text_Title" parent="AppTheme">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_gravity">start|center_vertical</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/lightGrey</item>
+    </style>
+
+    <style name="Edit_Text" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/grey</item>
+
+    </style>
+
+    <style name="Text_Normal" parent="AppTheme">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">start|center_vertical</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:lineSpacingMultiplier">@dimen/text_line_multiplier</item>
+        <item name="android:lineSpacingExtra">@dimen/text_line_spacing</item>
+        <item name="android:textColor">@color/darkGrey</item>
+        <item name="android:layout_marginTop">@dimen/padding_small</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+
+
 </resources>

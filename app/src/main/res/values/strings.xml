@@ -13,4 +13,19 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string-array name="my_jobs">
+        <item>Technical Support</item>
+        <item>Programmer</item>
+        <item>Web Developer</item>
+        <item>IT Security</item>
+        <item>Network Engineer</item>
+    </string-array>
+
+    // Filter
+    <string name="job_function">Job Function</string>
+    <string name="industry">Industry</string>
+    <string name="data_posted">Data Posted</string>
+
+
 </resources>
