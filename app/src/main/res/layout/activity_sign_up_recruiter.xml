@@ -26,23 +26,28 @@
         android:textStyle="bold" />
 
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="fill_horizontal|center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:columnCount="2">
 
         <EditText
-            android:layout_width="151dp"
+            android:id="@+id/editFN"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="First Name" />
+            android:hint="First Name"
+            android:layout_columnWeight="1"/>
 
         <EditText
-            android:layout_width="175dp"
+            android:id="@+id/editLN"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Last Name"
-            android:layout_marginLeft="10dp"/>
-    </LinearLayout>
+            android:layout_marginLeft="10dp"
+            android:layout_columnWeight="1"/>
+    </GridLayout>
 
     <EditText
         android:layout_width="match_parent"
