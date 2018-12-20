@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewLoginActivity"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/logo"
+        android:paddingVertical="10dp"
+        />
+
+    <EditText
+        android:id="@+id/editLEmail"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:hint="Email"
+        android:paddingVertical="10dp"
+        android:inputType="textEmailAddress"
+
+        />
+
+    <EditText
+        android:id="@+id/editLPassword"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:hint="Password"
+        android:paddingVertical="10dp"
+        android:inputType="textPassword"
+
+
+        />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"/>
+</LinearLayout>

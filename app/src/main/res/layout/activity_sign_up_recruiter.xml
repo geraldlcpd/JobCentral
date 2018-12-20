@@ -15,7 +15,7 @@
         android:minHeight="100dp"/>
 
     <TextView
-        android:id="@+id/txtSignUpJobSeeker"
+        android:id="@+id/txtRSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
@@ -34,14 +34,14 @@
         android:columnCount="2">
 
         <EditText
-            android:id="@+id/editFN"
+            android:id="@+id/editRFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="First Name"
             android:layout_columnWeight="1"/>
 
         <EditText
-            android:id="@+id/editLN"
+            android:id="@+id/editRLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Last Name"
@@ -50,11 +50,15 @@
     </GridLayout>
 
     <EditText
+        android:id="@+id/editREmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="E-mail"
         android:layout_marginVertical="8dp"/>
+
+
     <EditText
+        android:id="@+id/editRPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
@@ -62,6 +66,7 @@
         android:layout_marginVertical="8dp"/>
 
     <EditText
+        android:id="@+id/editRConfirmPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirm Password"

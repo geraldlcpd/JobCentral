@@ -1,13 +1,18 @@
 package com.example.jobcentral;
 
 import android.content.Intent;
+import android.icu.text.MessagePattern;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class WelcomePage extends AppCompatActivity {
 
@@ -55,6 +60,18 @@ public class WelcomePage extends AppCompatActivity {
         dbCV.setValue("");
         dbJob.setValue("");
 
+        DatabaseReference dbGet = dbTest.getReference("message/newUser");
+        dbGet.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snap) {
+                snap.getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         btnJobseeker = findViewById(R.id.btnJobseeker);
@@ -85,4 +102,5 @@ public class WelcomePage extends AppCompatActivity {
             }
         });
     }
+
 }
