@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SignUpJobseeker"
     android:orientation="vertical"
-    android:layout_marginHorizontal="20dp">
+    android:layout_marginHorizontal="10dp">
 
 
     <ImageView
@@ -26,27 +26,31 @@
         android:textStyle="bold" />
 
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:gravity="fill_horizontal|center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:columnCount="2">
 
         <EditText
-            android:layout_width="175dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="First Name"
-            android:paddingHorizontal="10dp"/>
+            android:paddingHorizontal="10dp"
+            android:layout_columnWeight="1"/>
 
         <EditText
-            android:layout_width="175dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Last Name"
             android:textAlignment="textStart"
-            android:paddingHorizontal="10dp"/>
+            android:paddingHorizontal="10dp"
+            android:layout_columnWeight="1"
 
-    </LinearLayout>
+            />
+
+    </GridLayout>
 
     <EditText
         android:layout_width="match_parent"
@@ -75,8 +79,9 @@
         android:layout_marginHorizontal="30dp"
         android:text="I accept the Terms of Use and Privacy Policy"
         android:layout_marginBottom="20dp"/>
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnJSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="120dp"
