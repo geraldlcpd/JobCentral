@@ -3,7 +3,7 @@ package com.example.jobcentral;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SignUpJobseeker extends AppCompatActivity {
+public class NewJobseekerSignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
