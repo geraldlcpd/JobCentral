@@ -19,8 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 public class WelcomePage extends AppCompatActivity {
 
 
-    Button btnLogin, btnJobseeker, btnRecruiter, btnGo;
-    Intent moveToLogin, moveToJobseeker, moveToRecruiter, moveToGo;
+    Button btnLogin, btnJobseeker, btnRecruiter;
+    Intent moveToLogin, moveToJobseeker, moveToRecruiter;
 
 
     String [] userTests = {"1Username", "2Password"};
@@ -95,12 +95,9 @@ public class WelcomePage extends AppCompatActivity {
         btnJobseeker = findViewById(R.id.btnJobseeker);
         btnRecruiter = findViewById(R.id.btnRecruiter);
         btnLogin = findViewById(R.id.loginBtn);
-        btnGo = findViewById(R.id.btn_go);
-
         moveToLogin = new Intent(this, NewLoginActivity.class);
         moveToJobseeker = new Intent(this, SignUpJobseeker.class);
         moveToRecruiter = new Intent(this, SignUpRecruiter.class);
-        moveToGo = new Intent(this,JobListing.class);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,15 +119,6 @@ public class WelcomePage extends AppCompatActivity {
                 startActivity(moveToRecruiter);
             }
         });
-
-        btnGo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(moveToGo);
-            }
-        });
     }
-
-
 
 }

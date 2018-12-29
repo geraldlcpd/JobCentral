@@ -51,19 +51,19 @@
         android:columnCount="2">
 
         <Button
-            android:id="@+id/btnJobseeker"
+            android:id="@+id/btnRecruit"
             android:layout_width="wrap_content"
             android:layout_height="47dp"
-            android:text="JOB SEEKER"
+            android:text="RECRUITER"
             android:textAlignment="center"
             android:layout_columnWeight="1"
     />
 
         <Button
-            android:id="@+id/btnRecruiter"
+            android:id="@+id/btnJobSeek"
             android:layout_width="wrap_content"
             android:layout_height="47dp"
-            android:text="RECRUITER"
+            android:text="JOB SEEKER"
             android:textAlignment="center"
             android:layout_columnWeight="1"
     />
