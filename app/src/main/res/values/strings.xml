@@ -13,4 +13,18 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+
+    // Job listing
+    <string-array name="my_jobs">
+        <item>IT Project Lead - Vision Interactive</item>
+        <item>IT Consultant- Kreacio Employment</item>
+        <item>IT Engineer - Resonant Networks</item>
+        <item>Software Developer - Tata Consultancy Services</item>
+        <item>Programmer - COMPIT Consultants</item>
+        <item>Web Programmer - CBP</item>
+        <item>Project manager - Maventree Technology Pte Ltd</item>
+        <item>IT Project Manager - Resort World Sentosa</item>
+
+    </string-array>
 </resources>

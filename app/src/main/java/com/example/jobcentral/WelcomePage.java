@@ -1,9 +1,12 @@
 package com.example.jobcentral;
 
 import android.content.Intent;
+import android.icu.text.MessagePattern;
+import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,12 +19,20 @@ import com.google.firebase.database.ValueEventListener;
 public class WelcomePage extends AppCompatActivity {
 
 
-    Button btnLogin, btnSRecruit, btnSJobSeeker;
-    Intent moveToLogin, moveToJobseeker, moveToRecruiter;
+    Button btnLogin, btnJobseeker, btnRecruiter,btnGo;
+    Intent moveToLogin, moveToJobseeker, moveToRecruiter,moveToGo;
 
 
+    String [] userTests = {"1Username", "2Password"};
+    String [] uNames = {"johnsmith", "john123"};
     FirebaseDatabase dbJobCentral = FirebaseDatabase.getInstance();
     FirebaseDatabase dbTest = FirebaseDatabase.getInstance();
+    DatabaseReference dbUser = dbJobCentral.getReference("USER");
+    DatabaseReference dbCV = dbJobCentral.getReference("CV");
+    DatabaseReference dbJob = dbJobCentral.getReference("JOB");
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,30 @@ public class WelcomePage extends AppCompatActivity {
 
         FirebaseDatabase dbTesting = FirebaseDatabase.getInstance();
         DatabaseReference refTest = dbTesting.getReference("message/u3");
+        String getData = refTest.child("1Username").toString();
+        System.out.println("getData Variable: " + getData);
+
+        // Sample code
+        DatabaseReference dbTestVal;
+        String firstPath = "message/u3";
+        String secondPath, userName;
+        String finalPath = "";
+        for (int i = 0 ; i < userTests.length; i ++)
+        {
+
+            secondPath = userTests[i];
+            userName = uNames[i];
+            finalPath = firstPath + "/" + secondPath;
+            dbTestVal = dbTest.getReference(finalPath);
+            dbTestVal.setValue(userName);
+
+        }
+
+        // End of Sample data submission
+
+        dbUser.setValue("");
+        dbCV.setValue("");
+        dbJob.setValue("");
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference locationRef = rootRef.child("message").child("u3").child("1Username");
@@ -57,12 +92,15 @@ public class WelcomePage extends AppCompatActivity {
         locationRef.addListenerForSingleValueEvent(vEL);
 
 
-        btnSRecruit = findViewById(R.id.btnRecruit);
-        btnSJobSeeker = findViewById(R.id.btnJobSeek);
+        btnJobseeker = findViewById(R.id.btnJobSeek);
+        btnRecruiter = findViewById(R.id.btnRecruit);
         btnLogin = findViewById(R.id.loginBtn);
+        btnGo = findViewById(R.id.btn_go);
+
         moveToLogin = new Intent(this, NewLoginActivity.class);
         moveToJobseeker = new Intent(this, NewJobseekerSignUp.class);
         moveToRecruiter = new Intent(this, NewRecruiterSignUp.class);
+        moveToGo = new Intent(this,JobListing.class);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,17 +109,24 @@ public class WelcomePage extends AppCompatActivity {
             }
         });
 
-        btnSRecruit.setOnClickListener(new View.OnClickListener() {
+        btnJobseeker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(moveToJobseeker);
+            }
+        });
+
+        btnRecruiter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(moveToRecruiter);
             }
         });
 
-        btnSJobSeeker.setOnClickListener(new View.OnClickListener() {
+        btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(moveToJobseeker);
+                startActivity(moveToGo);
             }
         });
     }
