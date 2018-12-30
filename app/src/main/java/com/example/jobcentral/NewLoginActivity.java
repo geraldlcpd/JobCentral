@@ -63,7 +63,7 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
                 String key = snap.getValue(String.class);
                 getPW = key;
                 System.out.println("uPW: " + key);
-                Toast.makeText(getApplicationContext(), "uName : " + txUsername + "\nPW: " + getPW, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(), "uName : " + txUsername + "\nPW: " + getPW, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -71,8 +71,21 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
 
             }
         };
-
         locationRef.addListenerForSingleValueEvent(vEL);
+        try {
+            boolean checkPW = (txPassword.equals(getPW));
+            if (checkPW) {
+                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+            }
+            else if (txPassword.length() != 0)
+                Toast.makeText(getApplicationContext(),"Password Incorrect", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(getApplicationContext(),"Password Field is Empty", Toast.LENGTH_SHORT).show();
+        } catch (NullPointerException a)
+        {
+            Toast.makeText(getApplicationContext(), "Password Field is Empty", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
