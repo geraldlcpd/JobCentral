@@ -2,6 +2,7 @@ package com.example.jobcentral;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,7 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class NewRecruiterSignUp extends AppCompatActivity {
 
-    EditText inRFN, inRLN, inREmail, inRPW, inRCPW;
+    private FirebaseAuth mAuth;
+    TextInputEditText inRFN, inRLN, inREmail, inRPW, inRCPW;
     CheckBox boxTNC;
     Button bSignUp;
     String txFN, txLN, txEmail, txPW, txCPW, txUN;
@@ -30,6 +33,8 @@ public class NewRecruiterSignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_recruiter);
+
+        mAuth = FirebaseAuth.getInstance();
 
         // EditText > Input components
         inRFN = findViewById(R.id.editRFirstName);
@@ -51,6 +56,14 @@ public class NewRecruiterSignUp extends AppCompatActivity {
         });
     }
 
+    private boolean validateForm()
+    {
+        boolean valid = true;
+        String email = inREmail.getText().toString();
+
+
+        return valid;
+    }
     void checkValid()
     {
         if (!txPW.equals(txCPW)) {
@@ -113,7 +126,7 @@ public class NewRecruiterSignUp extends AppCompatActivity {
         FirebaseDatabase uDBA = FirebaseDatabase.getInstance();
         DatabaseReference dbUFN = uDBA.getReference("USER/" + uName + "/1FN");
         DatabaseReference dbULN = uDBA.getReference("USER/" + uName + "/2LN");
-        DatabaseReference dbUEM= uDBA.getReference("USER/" + uName + "/3EM");
+        DatabaseReference dbUEM = uDBA.getReference("USER/" + uName + "/3EM");
         DatabaseReference dbUPW = uDBA.getReference("USER/" + uName + "/4PW");
 
 
