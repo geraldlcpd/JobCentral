@@ -1,115 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="JobPosting"
-android:orientation="vertical">
-
-<TextView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="JOB POSTING"
-    android:textSize="30dp"
-    android:textColor="#000000"
-    android:textStyle="bold"
-    android:textAlignment="center"/>
-
-<GridLayout
-    android:orientation="horizontal"
-    android:columnCount="2"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="JobPosting">
 
     <TextView
-        android:text="Company"
-        android:layout_columnWeight="1"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="JOB POSTING"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/cvEditCompany"
-        android:layout_columnWeight="4"
-        />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:orientation="horizontal">
 
-    <TextView
-        android:text="Job Title"
-        android:layout_columnWeight="1"
-        />
+        <TextView
+            android:layout_columnWeight="1"
+            android:text="Company" />
 
-    <EditText
-        android:id="@+id/cvEditTitle"
-        android:layout_columnWeight="4"
-        />
+        <EditText
+            android:id="@+id/cvEditCompany"
+            android:layout_columnWeight="4" />
 
-    <TextView
-        android:text="Country"
-        android:layout_columnWeight="1"
-        />
+        <TextView
+            android:layout_columnWeight="1"
+            android:text="Job Title" />
 
-    <EditText
-        android:id="@+id/cvEditCountry"
-        android:layout_columnWeight="4"
-        />
+        <EditText
+            android:id="@+id/cvEditTitle"
+            android:layout_columnWeight="4" />
 
-    <TextView
-        android:text="Postal Code"
-        android:layout_columnWeight="1"
-        />
+        <TextView
+            android:layout_columnWeight="1"
+            android:text="Country" />
 
-    <EditText
-        android:id="@+id/cvEditCode"
-        android:layout_columnWeight="4"
-        />
+        <EditText
+            android:id="@+id/cvEditCountry"
+            android:layout_columnWeight="4" />
 
-    <TextView
-        android:text="Company Address"
-        android:layout_columnWeight="1"
-        />
+        <TextView
+            android:layout_columnWeight="1"
+            android:text="Postal Code" />
 
-    <EditText
-        android:id="@+id/cvEditAddress"
-        android:layout_columnWeight="4"
-        />
+        <EditText
+            android:id="@+id/cvEditCode"
+            android:layout_columnWeight="4" />
 
-    <TextView
-        android:text="Contact Number"
-        android:layout_columnWeight="1"
-        />
+        <TextView
+            android:layout_columnWeight="1"
+            android:text="Company Address" />
 
-    <EditText
-        android:id="@+id/cvEditPhone"
-        android:layout_columnWeight="4"
-        />
+        <EditText
+            android:id="@+id/cvEditAddress"
+            android:layout_columnWeight="4" />
 
-    <TextView
-        android:text="Job Description"
-        android:layout_columnWeight="1"
-        />
+        <TextView
+            android:layout_columnWeight="1"
+            android:text="Contact Number" />
 
-    <EditText
-        android:id="@+id/cvEditDetails"
-        android:layout_columnWeight="4"
-        />
+        <EditText
+            android:id="@+id/cvEditPhone"
+            android:layout_columnWeight="4" />
 
-    <TextView
-        android:text="Job Requirement"
-        android:layout_columnWeight="1"
-        android:layout_height="30dp"
-        />
+        <TextView
+            android:layout_columnWeight="1"
+            android:text="Job Description" />
 
-    <EditText
-        android:id="@+id/cvEditRequirement"
-        android:layout_columnWeight="4"
-        android:layout_height="60dp"
-        android:singleLine="false"
-        />
+        <EditText
+            android:id="@+id/cvEditDetails"
+            android:layout_columnWeight="4" />
+
+        <TextView
+            android:layout_height="30dp"
+            android:layout_columnWeight="1"
+            android:text="Job Requirement" />
+
+        <EditText
+            android:id="@+id/cvEditRequirement"
+            android:layout_height="60dp"
+            android:layout_columnWeight="4"
+            android:singleLine="false" />
 
 
-</GridLayout>
+    </GridLayout>
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:text="APPLY" />
 
 
 </LinearLayout>
