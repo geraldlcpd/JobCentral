@@ -15,22 +15,24 @@
         android:paddingVertical="10dp"
         />
 
-    <EditText
+    <android.support.design.widget.TextInputEditText
         android:id="@+id/editLUsername"
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:hint="Username"
         android:paddingVertical="10dp"
+        android:layout_marginHorizontal="25dp"
         android:inputType="textEmailAddress"
 
         />
 
-    <EditText
+    <android.support.design.widget.TextInputEditText
         android:id="@+id/editLPassword"
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:hint="Password"
         android:paddingVertical="10dp"
+        android:layout_marginHorizontal="25dp"
         android:inputType="textPassword"
 
 
@@ -40,5 +42,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="20dp"
         android:text="Login"/>
 </LinearLayout>
