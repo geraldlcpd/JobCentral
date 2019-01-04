@@ -21,6 +21,7 @@ public class JobPostingConfirm extends AppCompatActivity {
         setContentView(R.layout.activity_job_posting_confirm);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+
         tCompany = findViewById(R.id.tcCompany);
         tTitle = findViewById(R.id.tcJobTitle);
         tCountry = findViewById(R.id.tcCountry);
@@ -37,6 +38,7 @@ public class JobPostingConfirm extends AppCompatActivity {
             public void onClick(View v) {
                 JobPost jobPost = new JobPost(gComp, gTitle, gCountry, gPostal, gContact, gReq, gDesc, gAddress);
                 mDatabase.child("msg").child("jobsample").setValue(jobPost);
+                // TODO : Change the message sample to real path after testing is done
             }
         });
 
