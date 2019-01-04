@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpRecruiter"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".NewJobseekerSignUp"
     android:orientation="vertical"
     android:layout_marginHorizontal="20dp">
 
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="100dp"/>
+        android:layout_height="60dp"
+        />
 
     <TextView
         android:id="@+id/txtRSignUp"
@@ -29,43 +29,80 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="fill_horizontal|center"
+        android:gravity="center"
         android:orientation="horizontal"
         android:columnCount="2">
 
-        <EditText
-            android:id="@+id/editRFirstName"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="First Name"
-            android:layout_columnWeight="1"/>
+            android:layout_columnWeight="1"
+            app:errorEnabled="true"
+            >
 
-        <EditText
-            android:id="@+id/editRLastName"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editRFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First Name"
+                android:layout_columnWeight="1"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Last Name"
-            android:layout_marginLeft="10dp"
-            android:layout_columnWeight="1"/>
+            android:layout_columnWeight="1"
+            app:errorEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editRLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Name"
+                android:layout_columnWeight="1"/>
+
+        </android.support.design.widget.TextInputLayout>
+
     </GridLayout>
 
-    <EditText
-        android:id="@+id/editREmail"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="E-mail"
-        android:layout_marginVertical="8dp"/>
+        app:errorEnabled="true"
+        >
 
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editREmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail" />
 
-    <EditText
-        android:id="@+id/editRPassword"
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_marginVertical="8dp"/>
+        app:errorEnabled="true"
 
-    <EditText
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editRPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
+
+
+    <android.support.design.widget.TextInputEditText
         android:id="@+id/editRConfirmPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,19 +110,22 @@
         android:layout_marginVertical="8dp"
         android:inputType="textPassword"/>
 
+    </android.support.design.widget.TextInputLayout>
+
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/rCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:text="I accept the Terms of Use and Privacy Policy"
         android:layout_marginBottom="20dp"
         android:textSize="12dp"/>
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="120dp"
+        android:layout_marginHorizontal="60dp"
         android:text="SIGN UP" />
 
 </LinearLayout>

@@ -2,9 +2,11 @@ package com.example.jobcentral;
 
 import android.content.Intent;
 import android.icu.text.MessagePattern;
+import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,12 +19,12 @@ import com.google.firebase.database.ValueEventListener;
 public class WelcomePage extends AppCompatActivity {
 
 
-    Button btnLogin, btnJobseeker, btnRecruiter;
-    Intent moveToLogin, moveToJobseeker, moveToRecruiter;
+    Button btnLogin, btnJobseeker, btnRecruiter,btnGo;
+    Intent moveToLogin, moveToJobseeker, moveToRecruiter,moveToGo;
 
 
-    String [] userTests = {"Name", "Username", "Password"};
-    String [] uNames = {"John", "johnsmith", "john123"};
+    String [] userTests = {"1Username", "2Password"};
+    String [] uNames = {"johnsmith", "john123"};
     FirebaseDatabase dbJobCentral = FirebaseDatabase.getInstance();
     FirebaseDatabase dbTest = FirebaseDatabase.getInstance();
     DatabaseReference dbUser = dbJobCentral.getReference("USER");
@@ -37,10 +39,14 @@ public class WelcomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
 
+        FirebaseDatabase dbTesting = FirebaseDatabase.getInstance();
+        DatabaseReference refTest = dbTesting.getReference("message/u3");
+        String getData = refTest.child("1Username").toString();
+        System.out.println("getData Variable: " + getData);
 
         // Sample code
         DatabaseReference dbTestVal;
-        String firstPath = "message/newUser";
+        String firstPath = "message/u3";
         String secondPath, userName;
         String finalPath = "";
         for (int i = 0 ; i < userTests.length; i ++)
@@ -60,26 +66,41 @@ public class WelcomePage extends AppCompatActivity {
         dbCV.setValue("");
         dbJob.setValue("");
 
-        DatabaseReference dbGet = dbTest.getReference("message/newUser");
-        dbGet.addValueEventListener(new ValueEventListener() {
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference locationRef = rootRef.child("message").child("u3").child("1Username");
+        DatabaseReference dbGet = dbTest.getReference("message/u3/1Username");
+        ValueEventListener vEL = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snap) {
-                snap.getValue();
+
+                String key = snap.getValue(String.class);
+                System.out.println("dsKeyN Value: " + key);
+                /*for (DataSnapshot ds : snap.getChildren())
+                {
+                    String key = ds.getValue(String.class);
+                    Log.d("TAG", key);
+                    System.out.println("dsKeyN Value: " + key);
+                }*/
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+
+        locationRef.addListenerForSingleValueEvent(vEL);
 
 
-        btnJobseeker = findViewById(R.id.btnJobseeker);
-        btnRecruiter = findViewById(R.id.btnRecruiter);
+        btnJobseeker = findViewById(R.id.btnJobSeek);
+        btnRecruiter = findViewById(R.id.btnRecruit);
         btnLogin = findViewById(R.id.loginBtn);
-        moveToLogin = new Intent(this, Login.class);
-        moveToJobseeker = new Intent(this, SignUpJobseeker.class);
-        moveToRecruiter = new Intent(this, SignUpRecruiter.class);
+        btnGo = findViewById(R.id.btn_go);
+
+        moveToLogin = new Intent(this, NewLoginActivity.class);
+        moveToJobseeker = new Intent(this, NewJobseekerSignUp.class);
+        moveToRecruiter = new Intent(this, NewRecruiterSignUp.class);
+        moveToGo = new Intent(this,JobListing.class);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +120,13 @@ public class WelcomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(moveToRecruiter);
+            }
+        });
+
+        btnGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(moveToGo);
             }
         });
     }

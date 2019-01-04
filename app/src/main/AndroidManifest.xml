@@ -24,10 +24,12 @@
         <activity
             android:name=".Login"
             android:label="@string/title_activity_login" />
-        <activity android:name=".SignUpJobseeker" />
-        <activity android:name=".SignUpRecruiter" />
+        <activity android:name=".NewRecruiterSignUp" />
+        <activity android:name=".NewJobseekerSignUp" />
         <activity android:name=".CVSubmission" />
-        <activity android:name=".NewLoginActivity"></activity>
+        <activity android:name=".NewLoginActivity" />
+        <activity android:name=".JobListing" />
+        <activity android:name=".JobDetails"></activity>
     </application>
 
 </manifest>

@@ -18,23 +18,14 @@ public class DataGet
     public String uName;
     public String pWord;
 
-    public DataGet(String uID, String uN)
+    public DataGet()
     {
-        final FirebaseDatabase dbTesting = FirebaseDatabase.getInstance();
-        DatabaseReference refTest = dbTesting.getReference("message/newUser");
-        refTest.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                DataGet newProg = dataSnapshot.getValue(DataGet.class);
-                System.out.println(newProg);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
+    }
+    public DataGet(String uN, String uP)
+    {
+        uName = uN;
+        pWord = uP;
     }
 }
 
