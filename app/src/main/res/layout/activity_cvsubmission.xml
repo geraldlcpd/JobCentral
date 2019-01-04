@@ -29,7 +29,7 @@
 
         <EditText
             android:id="@+id/cvEditFN"
-            android:layout_columnWeight="4"
+            android:layout_columnWeight="15"
             />
 
         <TextView
@@ -39,7 +39,7 @@
 
         <EditText
             android:id="@+id/cvEditLN"
-            android:layout_columnWeight="4"
+            android:layout_columnWeight="15"
             />
 
         <TextView
@@ -103,7 +103,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="80dp"
         android:text="Apply" />
 

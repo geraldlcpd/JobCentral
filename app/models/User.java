@@ -8,7 +8,7 @@ public class User
     String fName, lName, email, password;
 
     public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+        // Default constructor required for calls to DataSnapshot.getValue(JobPost.class)
     }
 
     public User(String fName, String lName, String email, String password) {

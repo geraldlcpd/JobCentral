@@ -29,7 +29,8 @@
         <activity android:name=".CVSubmission" />
         <activity android:name=".NewLoginActivity" />
         <activity android:name=".JobListing" />
-        <activity android:name=".JobDetails"></activity>
+        <activity android:name=".JobDetails" />
+        <activity android:name=".JobPostingConfirm"></activity>
     </application>
 
 </manifest>

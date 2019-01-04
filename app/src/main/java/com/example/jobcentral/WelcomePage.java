@@ -42,7 +42,7 @@ public class WelcomePage extends AppCompatActivity {
         FirebaseDatabase dbTesting = FirebaseDatabase.getInstance();
         DatabaseReference refTest = dbTesting.getReference("message/u3");
         String getData = refTest.child("1Username").toString();
-        System.out.println("getData Variable: " + getData);
+        System.out.println("setTVData Variable: " + getData);
 
         // Sample code
         DatabaseReference dbTestVal;

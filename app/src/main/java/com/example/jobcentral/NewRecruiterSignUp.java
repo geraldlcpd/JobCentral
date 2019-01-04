@@ -5,13 +5,18 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,11 +25,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class NewRecruiterSignUp extends AppCompatActivity {
 
+    private static final String TAG = "NewRecruiterSignUp";
     private FirebaseAuth mAuth;
     TextInputEditText inRFN, inRLN, inREmail, inRPW, inRCPW;
     CheckBox boxTNC;
     Button bSignUp;
-    String txFN, txLN, txEmail, txPW, txCPW, txUN;
+    String txFN, txLN, txEmail, txPW, txCPW, txUN, txUID;
     String [] userDataInput = {"FN", "LN", "email", "pw"};
     DatabaseReference userDB = FirebaseDatabase.getInstance().getReference("USER");
     long childCount;
@@ -102,39 +108,34 @@ public class NewRecruiterSignUp extends AppCompatActivity {
         txPW = inRPW.getText().toString();
         txCPW = inRCPW.getText().toString();
 
+        mAuth.createUserWithEmailAndPassword(txEmail, txPW).addOnCompleteListener(NewRecruiterSignUp.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful())
+                {
+                    Log.d(TAG,"createUserWithEmail: success" );
+                    System.out.println("createUserWithEmail: success");
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    txUID = user.getUid();
+                }
+                else
+                {
+                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                    Toast.makeText(NewRecruiterSignUp.this, "Auth Failed", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
         checkValid();
 
     }
 
     void transferToDB()
     {
-        String uID;
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        userDB.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                childCount = dataSnapshot.getChildrenCount();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        uID = "USR0" + childCount;
-        String uName = userDataInput[0].toLowerCase()+userDataInput[1].toLowerCase();
-        FirebaseDatabase uDBA = FirebaseDatabase.getInstance();
-        DatabaseReference dbUFN = uDBA.getReference("USER/" + uName + "/1FN");
-        DatabaseReference dbULN = uDBA.getReference("USER/" + uName + "/2LN");
-        DatabaseReference dbUEM = uDBA.getReference("USER/" + uName + "/3EM");
-        DatabaseReference dbUPW = uDBA.getReference("USER/" + uName + "/4PW");
-
-
-        dbUFN.setValue(userDataInput[0]);
-        dbULN.setValue(userDataInput[1]);
-        dbUEM.setValue(userDataInput[2]);
-        dbUPW.setValue(userDataInput[3]);
-        Toast.makeText(getApplicationContext(), "DB Executed", Toast.LENGTH_SHORT).show();
+        UserSignUp userSignUp = new UserSignUp(txFN, txLN, txEmail, txPW);
+        mDatabase.child("message").child(txUID).setValue(userSignUp);
     }
 }
 
