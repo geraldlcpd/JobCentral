@@ -30,10 +30,8 @@ public class NewRecruiterSignUp extends AppCompatActivity {
     TextInputEditText inRFN, inRLN, inREmail, inRPW, inRCPW;
     CheckBox boxTNC;
     Button bSignUp;
-    String txFN, txLN, txEmail, txPW, txCPW, txUN, txUID;
-    String [] userDataInput = {"FN", "LN", "email", "pw"};
-    DatabaseReference userDB = FirebaseDatabase.getInstance().getReference("USER");
-    long childCount;
+    String txFN, txLN, txEmail, txPW, txCPW, txUN;
+    String txUID = "user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +55,7 @@ public class NewRecruiterSignUp extends AppCompatActivity {
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                transferToText();
+                checkValid();
             }
         });
     }
@@ -66,12 +64,16 @@ public class NewRecruiterSignUp extends AppCompatActivity {
     {
         boolean valid = true;
         String email = inREmail.getText().toString();
-
-
         return valid;
     }
+
     void checkValid()
     {
+        txFN = inRFN.getText().toString();
+        txLN = inRLN.getText().toString();
+        txEmail = inREmail.getText().toString();
+        txPW = inRPW.getText().toString();
+        txCPW = inRCPW.getText().toString();
         if (!txPW.equals(txCPW)) {
             Toast.makeText(getApplicationContext(), "Passwords do not match\nPlease Correct", Toast.LENGTH_SHORT).show();
             inRPW.setTextColor(Color.RED);
@@ -79,35 +81,19 @@ public class NewRecruiterSignUp extends AppCompatActivity {
         }
         else
         {
-            if (!boxTNC.isChecked())
-            {
+            if (!boxTNC.isChecked()) {
                 boxTNC.setTextColor(Color.RED);
                 Toast.makeText(getApplicationContext(), "Please Accept Terms and Conditions", Toast.LENGTH_SHORT).show();
             }
-            else
-                entryToArray();
-        };
+            else {
 
-
-    }
-
-    void entryToArray()
-    {
-        userDataInput[0] = txFN;
-        userDataInput[1] = txLN;
-        userDataInput[2] = txEmail;
-        userDataInput[3] = txPW;
+            }
+        }
         transferToDB();
     }
 
-    void transferToText() {
-        // Get text from EditText
-        txFN = inRFN.getText().toString();
-        txLN = inRLN.getText().toString();
-        txEmail = inREmail.getText().toString();
-        txPW = inRPW.getText().toString();
-        txCPW = inRCPW.getText().toString();
-
+    void transferToDB()
+    {
         mAuth.createUserWithEmailAndPassword(txEmail, txPW).addOnCompleteListener(NewRecruiterSignUp.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -115,8 +101,6 @@ public class NewRecruiterSignUp extends AppCompatActivity {
                 {
                     Log.d(TAG,"createUserWithEmail: success" );
                     System.out.println("createUserWithEmail: success");
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    txUID = user.getUid();
                 }
                 else
                 {
@@ -126,14 +110,9 @@ public class NewRecruiterSignUp extends AppCompatActivity {
 
             }
         });
-        checkValid();
-
-    }
-
-    void transferToDB()
-    {
+        FirebaseUser user = mAuth.getCurrentUser();
+        txUID = user.getUid();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-
         UserSignUp userSignUp = new UserSignUp(txFN, txLN, txEmail, txPW);
         mDatabase.child("message").child(txUID).setValue(userSignUp);
     }
