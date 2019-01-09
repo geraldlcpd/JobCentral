@@ -58,7 +58,7 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
         moveToLogin = new Intent(this, NewLoginActivity.class);
         moveToJobseeker = new Intent(this, NewJobseekerSignUp.class);
         moveToRecruiter = new Intent(this, NewRecruiterSignUp.class);
-        moveToGo = new Intent(this,JobListing.class);
+        moveToGo = new Intent(this,HomePage.class);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

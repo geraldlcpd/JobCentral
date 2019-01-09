@@ -30,7 +30,8 @@
         <activity android:name=".NewLoginActivity" />
         <activity android:name=".JobListing" />
         <activity android:name=".JobDetails" />
-        <activity android:name=".JobPostingConfirm"></activity>
+        <activity android:name=".JobPostingConfirm" />
+        <activity android:name=".HomePage"></activity>
     </application>
 
 </manifest>
