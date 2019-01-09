@@ -1,10 +1,13 @@
 package com.example.jobcentral;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -15,7 +18,7 @@ import java.util.Arrays;
 
 public class JobListing extends AppCompatActivity {
 
-    ListView search_job;
+    ListView job_listing;
 
     ArrayAdapter<String> adapter;
 
@@ -24,7 +27,11 @@ public class JobListing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_listing);
 
-        search_job=(ListView) findViewById(R.id.search_job);
+        job_listing=(ListView) findViewById(R.id.search_job);
+
+
+
+        //Job Array list
 
         ArrayList<String> arrayJob = new ArrayList<>();
         arrayJob.addAll(Arrays.asList(getResources().getStringArray(R.array.my_jobs)));
@@ -34,10 +41,40 @@ public class JobListing extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 arrayJob
         );
-        search_job.setAdapter(adapter);
+        job_listing.setAdapter(adapter);
+
+        // Job listing can click and go to job detail page
+
+        job_listing.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0){
+                    Intent jobintent = new Intent(view.getContext(),JobDetails.class);
+                    startActivityForResult(jobintent,0);
+                }
+                if(position ==1){
+                    Intent jobintent = new Intent(view.getContext(),JobDetails.class);
+                    startActivityForResult(jobintent,1);
+                }
+                if (position ==2){
+                    Intent jobintent = new Intent(view.getContext(),JobDetails.class);
+                    startActivityForResult(jobintent,2);
+                }
+                if (position ==3){
+                    Intent jobintent = new Intent(view.getContext(),JobDetails.class);
+                    startActivityForResult(jobintent,3);
+                }
+                if (position ==4){
+                    Intent jobintent = new Intent(view.getContext(),JobDetails.class);
+                    startActivityForResult(jobintent,4);
+                }
+            }
+        });
 
     }
 
+
+    // Menu bar for searching
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
