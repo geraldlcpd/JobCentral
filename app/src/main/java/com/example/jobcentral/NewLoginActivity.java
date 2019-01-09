@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,20 +25,25 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
 
     static final String TAG = "NewLoginActivity";
     DatabaseReference mDB;
-    FirebaseAuth mAuth;
+    ValueEventListener userListen;
+    private FirebaseAuth mAuthLogin;
     EditText mUsername, mPassword;
     Button btnLogin;
     String txUsername, txPassword;
-    String getUname, getPW;
+    String userID;
+    String userKind;
+    int uKindInt;
+    FirebaseUser userSign;
 
+    //DBAttrib
+    String dbFN, dbLN, dbPW, dbEM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_login);
 
-        mDB = FirebaseDatabase.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
+        mAuthLogin = FirebaseAuth.getInstance();
 
         mUsername = findViewById(R.id.editLUsername);
         mPassword = findViewById(R.id.editLPassword);
@@ -52,37 +58,101 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
             public void onClick(View v) {
                 txUsername = mUsername.getText().toString();
                 txPassword = mPassword.getText().toString();
-                checkLogin();
+                checkLogin(txUsername, txPassword);
+                getUID();
+                getUserData();
             }
         });
 
 
     }
 
-    public void checkLogin()
+    void checkLogin(String email, String password)
     {
+        mAuthLogin.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-        mAuth.signInWithEmailAndPassword(txUsername, txPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful())
-                {
-                    Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
-                    //TODO : Create a Home page for the user to navigate after sucessfully log in
-                }
-                else
-                {
-                    Log.w(TAG, "signInWithEmail: Fail ", task.getException());
-                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+                        if (task.isSuccessful())
+                        {
+                            Log.d(TAG, "signInWithEmail:success");
+                        }
+                        else
+                        {
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(NewLoginActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        userListen = new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                DataGet dataGet = dataSnapshot.getValue(DataGet.class);
+                userKind = dataGet.kind;
+                dbFN = dataGet.firstName;
+                dbLN = dataGet.lastName;
+                dbEM = dataGet.email;
+                dbPW = dataGet.password;
+                System.out.println("DG_log " + userKind);
+                Toast.makeText(NewLoginActivity.this,"UserKind Retrieve>> " + userKind, Toast.LENGTH_SHORT).show();
+                checkUserKind();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "loadPost: onCancelled", databaseError.toException());
+                System.out.println("loadPost: onCancelled " + databaseError.toException());
+
+            }
+        };
+
+
+    }
+
+    void getUID()
+    {
+        FirebaseUser login = mAuthLogin.getCurrentUser();
+        userID = login.getUid();
+    }
+    public void getUserData()
+    {
+
+        mDB = FirebaseDatabase.getInstance().getReference().child("user").child(userID);
+        mDB.addValueEventListener(userListen);
+
+    }
+
+    void checkUserKind()
+    {
+        if(userKind.equals("recruiter"))
+        {
+            System.out.println("MoveToRecruiter Intent REQ_01 >> uKind = " + userKind);
+            Toast.makeText(NewLoginActivity.this, "Move to R", Toast.LENGTH_SHORT).show();
+            Toast.makeText(NewLoginActivity.this, dbFN, Toast.LENGTH_SHORT).show();
+            Toast.makeText(NewLoginActivity.this, dbLN, Toast.LENGTH_SHORT).show();
+            Toast.makeText(NewLoginActivity.this, dbEM, Toast.LENGTH_SHORT).show();
+            //TODO: Move to Recruiter Home page
+        }
+        else
+        {
+            System.out.println("MoveToJS Intent REQ_02");
+            Toast.makeText(NewLoginActivity.this, "Move to J", Toast.LENGTH_SHORT).show();
+            //TODO : Move to JobSeeker Home Page
+        }
     }
 }
 

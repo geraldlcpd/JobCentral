@@ -31,8 +31,9 @@ public class NewRecruiterSignUp extends AppCompatActivity {
     CheckBox boxTNC;
     Button bSignUp;
     String txFN, txLN, txEmail, txPW, txCPW, txUN;
-    String txUID = "user";
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    String txUID;
+    DatabaseReference mDatabase;
+    FirebaseUser rUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class NewRecruiterSignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_recruiter);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // EditText > Input components
         inRFN = findViewById(R.id.editRFirstName);
@@ -57,6 +59,8 @@ public class NewRecruiterSignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkValid();
+                transferToDB();
+                dbInput();
             }
         });
     }
@@ -90,7 +94,7 @@ public class NewRecruiterSignUp extends AppCompatActivity {
 
             }
         }
-        transferToDB();
+
     }
 
     void transferToDB()
@@ -102,7 +106,6 @@ public class NewRecruiterSignUp extends AppCompatActivity {
                 {
                     Log.d(TAG,"createUserWithEmail: success" );
                     System.out.println("createUserWithEmail: success");
-                    txUID = mAuth.getCurrentUser().getUid();
                 }
                 else
                 {
@@ -112,10 +115,17 @@ public class NewRecruiterSignUp extends AppCompatActivity {
 
             }
         });
-        FirebaseUser user = mAuth.getCurrentUser();
 
+
+    }
+
+    void dbInput()
+    {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        txUID = currentUser.getUid();
+        System.out.println("txUID2: " + txUID);
         UserSignUp userSignUp = new UserSignUp(txFN, txLN, txEmail, txPW, "recruiter");
-        mDatabase.child("message").child(txUID).setValue(userSignUp);
+        mDatabase.child("user").child(txUID).setValue(userSignUp);
     }
 }
 

@@ -40,7 +40,6 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
 
-        // Get post key from Intent
 
 
         mPostRef = FirebaseDatabase.getInstance().getReference().child("jobtest").child("jobid1");
@@ -95,6 +94,7 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 GetJobListing getJobListing = dataSnapshot.getValue(GetJobListing.class);
+                System.out.println("J:LA423 " + getJobListing.address);
 
             }
 
