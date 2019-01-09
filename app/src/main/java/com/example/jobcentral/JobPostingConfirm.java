@@ -45,7 +45,7 @@ public class JobPostingConfirm extends AppCompatActivity {
         ;
 
     }
-    public static void setTVData()
+    public void setTVData()
     {
         tCompany.setText(JobPosting.txtComp);
         tTitle.setText(JobPosting.txtTitle);

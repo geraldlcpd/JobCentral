@@ -32,6 +32,7 @@ public class NewRecruiterSignUp extends AppCompatActivity {
     Button bSignUp;
     String txFN, txLN, txEmail, txPW, txCPW, txUN;
     String txUID = "user";
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,7 @@ public class NewRecruiterSignUp extends AppCompatActivity {
                 {
                     Log.d(TAG,"createUserWithEmail: success" );
                     System.out.println("createUserWithEmail: success");
+                    txUID = mAuth.getCurrentUser().getUid();
                 }
                 else
                 {
@@ -111,9 +113,8 @@ public class NewRecruiterSignUp extends AppCompatActivity {
             }
         });
         FirebaseUser user = mAuth.getCurrentUser();
-        txUID = user.getUid();
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        UserSignUp userSignUp = new UserSignUp(txFN, txLN, txEmail, txPW);
+
+        UserSignUp userSignUp = new UserSignUp(txFN, txLN, txEmail, txPW, "recruiter");
         mDatabase.child("message").child(txUID).setValue(userSignUp);
     }
 }

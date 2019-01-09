@@ -67,7 +67,7 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
-                    Toast.makeText(getApplicationContext(), "Login Sucess", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
                     //TODO : Create a Home page for the user to navigate after sucessfully log in
                 }
                 else

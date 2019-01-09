@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -19,6 +20,8 @@ import java.util.Arrays;
 public class JobListing extends AppCompatActivity {
 
     ListView job_listing;
+    Button bNavChat, bNavBoard, bNavCVBox;
+    Intent mChat, mBoard, mCV;
 
     ArrayAdapter<String> adapter;
 
@@ -26,8 +29,9 @@ public class JobListing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_listing);
+        asnNavBarBtns();
 
-        job_listing=(ListView) findViewById(R.id.search_job);
+        job_listing = findViewById(R.id.search_job);
 
 
 
@@ -95,6 +99,38 @@ public class JobListing extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    void asnNavBarBtns()
+    {
+        mChat = new Intent(this, ChatActivity.class);
+        mBoard = new Intent(this, JobListing.class);
+        mCV = new Intent(this, CVSubmission.class);
+
+        bNavChat = findViewById(R.id.bNavChat);
+        bNavBoard = findViewById(R.id.bNavBillboard);
+        bNavCVBox = findViewById(R.id.bNavCVBox);
+
+        bNavChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(mChat);
+            }
+        });
+
+        bNavCVBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(mCV);
+            }
+        });
+
+        bNavBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(mBoard);
+            }
+        });
     }
 
 }
