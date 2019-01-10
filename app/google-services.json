@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "365922715369-bcq8bicdmm0ljvfbrg27e902a8i0r44d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jobcentral",
+            "certificate_hash": "5db3e1d082a908e16164cc2725015eeeb208eba4"
+          }
+        },
+        {
           "client_id": "365922715369-6g9sabqp2t6a4bk634ph24bv2nebi2mt.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "365922715369-6g9sabqp2t6a4bk634ph24bv2nebi2mt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

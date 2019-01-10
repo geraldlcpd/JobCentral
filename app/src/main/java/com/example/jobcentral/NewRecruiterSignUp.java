@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 public class NewRecruiterSignUp extends AppCompatActivity {
 
     private static final String TAG = "NewRecruiterSignUp";
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
     TextInputEditText inRFN, inRLN, inREmail, inRPW, inRCPW;
     CheckBox boxTNC;
     Button bSignUp;

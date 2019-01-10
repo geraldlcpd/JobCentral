@@ -42,7 +42,7 @@
             android:id="@+id/btnCV"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:text="CVBox"
+            android:text="CV BOX"
             android:paddingLeft="10dp"/>
 
     </LinearLayout>
@@ -63,11 +63,10 @@
             android:id="@+id/btnQuit"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:text="CVBox"
+            android:text="SIGN OUT"
             android:paddingLeft="10dp"/>
 
     </LinearLayout>
-
 
 
 

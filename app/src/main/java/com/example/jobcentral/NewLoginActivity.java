@@ -1,12 +1,16 @@
 package com.example.jobcentral;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,46 +31,66 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
     DatabaseReference mDB;
     ValueEventListener userListen;
     private FirebaseAuth mAuthLogin;
-    EditText mUsername, mPassword;
+    TextInputEditText mEmail, mPassword;
     Button btnLogin;
     String txUsername, txPassword;
     String userID;
     String userKind;
-    int uKindInt;
+    Intent moveR, moveJ;
     FirebaseUser userSign;
-
+    boolean isLoggedin, isBlank;
     //DBAttrib
     String dbFN, dbLN, dbPW, dbEM;
+    TextInputLayout mE, mP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_login);
+        isLoggedin = false;
 
         mAuthLogin = FirebaseAuth.getInstance();
 
-        mUsername = findViewById(R.id.editLUsername);
+        mEmail = findViewById(R.id.editLUsername);
         mPassword = findViewById(R.id.editLPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        mE = findViewById(R.id.editTIE);
+        mP = findViewById(R.id.editTIP);
 
-        txUsername = mUsername.getText().toString();
+        txUsername = mEmail.getText().toString();
         txPassword = mPassword.getText().toString();
 
+        moveR = new Intent(this, HomePage.class);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txUsername = mUsername.getText().toString();
+                txUsername = mEmail.getText().toString();
                 txPassword = mPassword.getText().toString();
-                checkLogin(txUsername, txPassword);
+
+                try {
+                    checkLogin(txUsername, txPassword);
+                }
+                catch (IllegalArgumentException a)
+                {
+                    setBlank();
+                }
                 getUID();
-                getUserData();
+                if (isLoggedin)
+                    getUserData();
+
             }
         });
 
 
     }
 
+    void setBlank()
+    {
+        mEmail.setError("Blank");
+        mPassword.setError("Blank");
+
+    }
     void checkLogin(String email, String password)
     {
         mAuthLogin.signInWithEmailAndPassword(email, password)
@@ -77,11 +101,15 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
                         if (task.isSuccessful())
                         {
                             Log.d(TAG, "signInWithEmail:success");
+                            isLoggedin = true;
                         }
                         else
                         {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(NewLoginActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            mEmail.setError("Check email");
+                            mPassword.setError("Check Password");
+                            isLoggedin = false;
                         }
                     }
                 });
@@ -127,6 +155,11 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
     {
         FirebaseUser login = mAuthLogin.getCurrentUser();
         userID = login.getUid();
+        if (userID == null)
+        {
+
+        }
+        System.out.println("uID GET >> " + userID);
     }
     public void getUserData()
     {
@@ -138,13 +171,32 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
 
     void checkUserKind()
     {
+        AlertDialog.Builder builderR = new AlertDialog.Builder(NewLoginActivity.this, android.R.style.Theme_Material_Dialog);
+        builderR.setTitle("Login Success").setMessage("You have successfully logged in");
+        builderR.setCancelable(false);
+        builderR.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(moveR);
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog.Builder builderJ = new AlertDialog.Builder(NewLoginActivity.this, android.R.style.Theme_Material_Dialog);
+        builderJ.setTitle("Login Success").setMessage("You have successfully logged in");
+        builderJ.setCancelable(false);
+        builderJ.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(moveJ);
+                dialog.dismiss();
+            }
+        });
         if(userKind.equals("recruiter"))
         {
             System.out.println("MoveToRecruiter Intent REQ_01 >> uKind = " + userKind);
-            Toast.makeText(NewLoginActivity.this, "Move to R", Toast.LENGTH_SHORT).show();
-            Toast.makeText(NewLoginActivity.this, dbFN, Toast.LENGTH_SHORT).show();
-            Toast.makeText(NewLoginActivity.this, dbLN, Toast.LENGTH_SHORT).show();
-            Toast.makeText(NewLoginActivity.this, dbEM, Toast.LENGTH_SHORT).show();
+            AlertDialog alertR = builderR.create();
+            alertR.show();
             //TODO: Move to Recruiter Home page
         }
         else
@@ -153,6 +205,13 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(NewLoginActivity.this, "Move to J", Toast.LENGTH_SHORT).show();
             //TODO : Move to JobSeeker Home Page
         }
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        mAuthLogin.signOut();
     }
 }
 
