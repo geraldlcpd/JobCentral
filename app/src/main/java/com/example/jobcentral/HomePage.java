@@ -15,7 +15,8 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_home_page_jobseeker);
+        setContentView(R.layout.activity_home_page_recruiter);
 
         cBillboard =(Button) findViewById(R.id.btnBod);
         cCVBox = (Button) findViewById(R.id.btnCV);
