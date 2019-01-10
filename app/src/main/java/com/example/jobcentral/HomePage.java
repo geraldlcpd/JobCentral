@@ -3,25 +3,28 @@ package com.example.jobcentral;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
 
     private Button cBillboard, cCVBox, cChat, cQuit;
+    static String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page_jobseeker);
-        setContentView(R.layout.activity_home_page_recruiter);
+        if(type.equals("j"))
+            setContentView(R.layout.activity_home_page_jobseeker);
+        else
+            setContentView(R.layout.activity_home_page_recruiter);
 
         cBillboard =(Button) findViewById(R.id.btnBod);
         cCVBox = (Button) findViewById(R.id.btnCV);
-        cChat =(Button) findViewById(R.id.btnCV);
-        cQuit = (Button) findViewById(R.id.btnChat);
+        cChat =(Button) findViewById(R.id.btnChat);
+        cQuit = (Button) findViewById(R.id.btnQuit);
 
         cBillboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,16 +47,18 @@ public class HomePage extends AppCompatActivity {
         cQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Signout();
+                signOut();
             }
         });
 
 
     }
 
-    private void Signout() {
-        Intent intent = new Intent(this, WelcomePage.class);
-        Signout();
+    private void signOut() {
+        Intent intent = new Intent(HomePage.this, NewLoginActivity.class);
+        WelcomePage.reqSignOut();
+        startActivity(intent);
+        FirebaseAuth.getInstance().signOut();
     }
 
     private void openChat() {

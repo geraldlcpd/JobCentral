@@ -30,7 +30,7 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
     static final String TAG = "NewLoginActivity";
     DatabaseReference mDB;
     ValueEventListener userListen;
-    private FirebaseAuth mAuthLogin;
+    static FirebaseAuth mAuthLogin;
     TextInputEditText mEmail, mPassword;
     Button btnLogin;
     String txUsername, txPassword;
@@ -125,6 +125,7 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
     public void onStart()
     {
         super.onStart();
+        isLoggedin = false;
         userListen = new ValueEventListener()
         {
             @Override
@@ -134,7 +135,6 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
                 dbFN = dataGet.firstName;
                 dbLN = dataGet.lastName;
                 dbEM = dataGet.email;
-                dbPW = dataGet.password;
                 System.out.println("DG_log " + userKind);
                 Toast.makeText(NewLoginActivity.this,"UserKind Retrieve>> " + userKind, Toast.LENGTH_SHORT).show();
                 checkUserKind();
@@ -155,40 +155,37 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
     {
         FirebaseUser login = mAuthLogin.getCurrentUser();
         userID = login.getUid();
-        if (userID == null)
-        {
-
-        }
         System.out.println("uID GET >> " + userID);
     }
-    public void getUserData()
-    {
 
+    void getUserData()
+    {
         mDB = FirebaseDatabase.getInstance().getReference().child("user").child(userID);
         mDB.addValueEventListener(userListen);
-
     }
 
     void checkUserKind()
     {
         AlertDialog.Builder builderR = new AlertDialog.Builder(NewLoginActivity.this, android.R.style.Theme_Material_Dialog);
-        builderR.setTitle("Login Success").setMessage("You have successfully logged in");
+        builderR.setTitle("Login Success").setMessage("Welcome, " + dbFN);
         builderR.setCancelable(false);
         builderR.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                HomePage.type = "r";
                 startActivity(moveR);
                 dialog.dismiss();
             }
         });
 
         AlertDialog.Builder builderJ = new AlertDialog.Builder(NewLoginActivity.this, android.R.style.Theme_Material_Dialog);
-        builderJ.setTitle("Login Success").setMessage("You have successfully logged in");
+        builderJ.setTitle("Login Success").setMessage("Welcome, " + dbFN);
         builderJ.setCancelable(false);
         builderJ.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivity(moveJ);
+                HomePage.type = "j";
+                startActivity(moveR);
                 dialog.dismiss();
             }
         });
@@ -202,6 +199,8 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
         else
         {
             System.out.println("MoveToJS Intent REQ_02");
+            AlertDialog alertJ = builderJ.create();
+            alertJ.show();
             Toast.makeText(NewLoginActivity.this, "Move to J", Toast.LENGTH_SHORT).show();
             //TODO : Move to JobSeeker Home Page
         }
@@ -211,7 +210,12 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
     public void onDestroy()
     {
         super.onDestroy();
-        mAuthLogin.signOut();
+        FirebaseAuth.getInstance().signOut();
+    }
+
+    public static void reqLogOut()
+    {
+
     }
 }
 

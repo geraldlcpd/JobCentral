@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +28,7 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
     public static final String EXTRA_POST_KEY = "post_key";
     String mPostKey;
 
+    static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseDatabase dbJobCentral = FirebaseDatabase.getInstance();
     FirebaseDatabase dbTest = FirebaseDatabase.getInstance();
     DatabaseReference mPostRef;
@@ -48,6 +50,7 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
         DatabaseReference refTest = dbTesting.getReference("message/u3");
         String getData = refTest.child("1Username").toString();
         System.out.println("setTVData Variable: " + getData);
+
 
 
         btnJobseeker = findViewById(R.id.btnJobSeek);
@@ -110,5 +113,10 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
 
+    }
+
+    public static void reqSignOut()
+    {
+        mAuth.signOut();
     }
 }

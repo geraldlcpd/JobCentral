@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,16 +16,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class NewRecruiterSignUp extends AppCompatActivity {
 
     private static final String TAG = "NewRecruiterSignUp";
-    FirebaseAuth mAuth;
+    FirebaseAuth mAuthRec;
     TextInputEditText inRFN, inRLN, inREmail, inRPW, inRCPW;
     CheckBox boxTNC;
     Button bSignUp;
@@ -38,9 +34,11 @@ public class NewRecruiterSignUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_sign_up_recruiter);
 
-        mAuth = FirebaseAuth.getInstance();
+        mAuthRec = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // EditText > Input components
@@ -65,12 +63,6 @@ public class NewRecruiterSignUp extends AppCompatActivity {
         });
     }
 
-    private boolean validateForm()
-    {
-        boolean valid = true;
-        String email = inREmail.getText().toString();
-        return valid;
-    }
 
     void checkValid()
     {
@@ -90,16 +82,13 @@ public class NewRecruiterSignUp extends AppCompatActivity {
                 boxTNC.setTextColor(Color.RED);
                 Toast.makeText(getApplicationContext(), "Please Accept Terms and Conditions", Toast.LENGTH_SHORT).show();
             }
-            else {
-
-            }
         }
 
     }
 
     void transferToDB()
     {
-        mAuth.createUserWithEmailAndPassword(txEmail, txPW).addOnCompleteListener(NewRecruiterSignUp.this, new OnCompleteListener<AuthResult>() {
+        mAuthRec.createUserWithEmailAndPassword(txEmail, txPW).addOnCompleteListener(NewRecruiterSignUp.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
@@ -121,11 +110,19 @@ public class NewRecruiterSignUp extends AppCompatActivity {
 
     void dbInput()
     {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = mAuthRec.getCurrentUser();
         txUID = currentUser.getUid();
         System.out.println("txUID2: " + txUID);
         UserSignUp userSignUp = new UserSignUp(txFN, txLN, txEmail, txPW, "recruiter");
         mDatabase.child("user").child(txUID).setValue(userSignUp);
+
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        mAuthRec.signOut();
     }
 }
 
