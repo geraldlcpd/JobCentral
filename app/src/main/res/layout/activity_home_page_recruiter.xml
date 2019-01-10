@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".HomePage"
+    android:background="@color/backgroundColor"
+    >
+
+
+    //Logo
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="20dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnBod"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:text="Billboard"
+            android:paddingRight="10dp"/>
+
+        <Button
+            android:id="@+id/btnCV"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:text="CV BOX"
+            android:paddingLeft="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnChat"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:text="Chatting"
+            android:paddingRight="10dp"/>
+
+        <Button
+            android:id="@+id/btnQuit"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:text="SIGN OUT"
+            android:paddingLeft="10dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
