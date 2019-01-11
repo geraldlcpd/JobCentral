@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Random;
 
+
 public class JobPostingConfirm extends AppCompatActivity {
 
     static String gComp, gTitle, gCountry, gPostal, gContact, gReq, gDesc, gAddress;
@@ -54,7 +55,7 @@ public class JobPostingConfirm extends AppCompatActivity {
     {
         int leftLimit = 65; // letter '0'
         int rightLimit = 90; // letter 'z'
-        int targetStringLength = 20;
+        int targetStringLength = 4;
         Random random = new Random();
         StringBuilder buffer = new StringBuilder(targetStringLength);
         for (int i = 0; i < targetStringLength; i++) {
@@ -62,7 +63,7 @@ public class JobPostingConfirm extends AppCompatActivity {
                     (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
-        String generatedString = buffer.toString();
+        String generatedString = "JOB_ID-" + buffer.toString();
 
         return generatedString;
     }
