@@ -30,7 +30,7 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
     static final String TAG = "NewLoginActivity";
     DatabaseReference mDB;
     ValueEventListener userListen;
-    static FirebaseAuth mAuthLogin;
+    FirebaseAuth mAuthLogin;
     TextInputEditText mEmail, mPassword;
     Button btnLogin;
     String txUsername, txPassword;
@@ -57,9 +57,6 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
         mE = findViewById(R.id.editTIE);
         mP = findViewById(R.id.editTIP);
 
-        txUsername = mEmail.getText().toString();
-        txPassword = mPassword.getText().toString();
-
         moveR = new Intent(this, HomePage.class);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -70,12 +67,14 @@ public class NewLoginActivity extends AppCompatActivity implements View.OnClickL
 
                 try {
                     checkLogin(txUsername, txPassword);
+                    getUID();
                 }
                 catch (IllegalArgumentException a)
                 {
                     setBlank();
                 }
-                getUID();
+                catch (NullPointerException b) {}
+
                 if (isLoggedin)
                     getUserData();
 

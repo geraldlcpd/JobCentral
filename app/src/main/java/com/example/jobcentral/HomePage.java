@@ -11,6 +11,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomePage extends AppCompatActivity {
 
     private Button cBillboard, cCVBox, cChat, cQuit;
+    private Button cPostJob;
+    Intent mToJobPost;
     static String type;
 
     @Override
@@ -25,6 +27,7 @@ public class HomePage extends AppCompatActivity {
         cCVBox = (Button) findViewById(R.id.btnCV);
         cChat =(Button) findViewById(R.id.btnChat);
         cQuit = (Button) findViewById(R.id.btnQuit);
+        cPostJob = findViewById(R.id.btnJobPost);
 
         cBillboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,10 +53,21 @@ public class HomePage extends AppCompatActivity {
                 signOut();
             }
         });
+        cPostJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToJobPost();
+            }
+        });
 
 
     }
 
+    private void moveToJobPost()
+    {
+        mToJobPost = new Intent(HomePage.this, JobPosting.class);
+        startActivity(mToJobPost);
+    }
     private void signOut() {
         Intent intent = new Intent(HomePage.this, NewLoginActivity.class);
         WelcomePage.reqSignOut();
