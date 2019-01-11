@@ -118,7 +118,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void openChat() {
-        Intent intent = new Intent(HomePage.this, ChatActivity.class);
+        Intent intent = new Intent(HomePage.this, Contact.class);
         startActivity(intent);
     }
 
