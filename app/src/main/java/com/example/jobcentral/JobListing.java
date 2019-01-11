@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -103,7 +102,7 @@ public class JobListing extends AppCompatActivity {
 
     void asnNavBarBtns()
     {
-        mChat = new Intent(this, ChatActivity.class);
+        mChat = new Intent(this, Contact.class);
         mBoard = new Intent(this, JobListing.class);
         mCV = new Intent(this, CVSubmission.class);
 

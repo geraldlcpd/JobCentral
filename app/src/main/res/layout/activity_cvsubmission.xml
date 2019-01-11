@@ -5,107 +5,108 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CVSubmission"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CV SUBMISSION"
-        android:textSize="30dp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
+    <RelativeLayout
+        android:layout_width="332dp"
+        android:layout_height="403dp"
+        android:gravity="center_horizontal"
+        android:padding="10dp">
 
-    <GridLayout
-        android:orientation="horizontal"
-        android:columnCount="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <TextView
-            android:text="First Name"
-            android:layout_columnWeight="1"
-            />
+            android:id="@+id/cvTittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CV SUBMISSION"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/cvEditFN"
-            android:layout_columnWeight="15"
-            />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cvTittle"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
 
-        <TextView
-            android:text="Last Name"
-            android:layout_columnWeight="1"
-            />
+            <TextView
+                android:layout_columnWeight="1"
+                android:text="First Name" />
 
-        <EditText
-            android:id="@+id/cvEditLN"
-            android:layout_columnWeight="15"
-            />
+            <EditText
+                android:id="@+id/cvEditFN"
+                android:layout_columnWeight="15" />
 
-        <TextView
-            android:text="Email Address"
-            android:layout_columnWeight="1"
-            />
+            <TextView
+                android:layout_columnWeight="1"
+                android:text="Last Name" />
 
-        <EditText
-            android:id="@+id/cvEditEmail"
-            android:layout_columnWeight="4"
-            />
+            <EditText
+                android:id="@+id/cvEditLN"
+                android:layout_columnWeight="15" />
 
-        <TextView
-            android:text="First Name"
-            android:layout_columnWeight="1"
-            />
+            <TextView
+                android:layout_columnWeight="1"
+                android:text="Email Address" />
 
-        <EditText
-            android:id="@+id/cvEditPhone"
-            android:layout_columnWeight="4"
-            />
+            <EditText
+                android:id="@+id/cvEditEmail"
+                android:layout_columnWeight="4" />
 
-        <TextView
-            android:text="Preffered Job"
-            android:layout_columnWeight="1"
-            />
+            <TextView
+                android:layout_columnWeight="1"
+                android:text="First Name" />
 
-        <EditText
-            android:id="@+id/cvEditPrefJob"
-            android:layout_columnWeight="4"
-            />
+            <EditText
+                android:id="@+id/cvEditPhone"
+                android:layout_columnWeight="4" />
 
-        <TextView
-            android:text="CV Details"
-            android:layout_columnWeight="1"
-            />
+            <TextView
+                android:layout_columnWeight="1"
+                android:text="Preffered Job" />
 
-        <EditText
-            android:id="@+id/cvEditDetails"
-            android:layout_columnWeight="4"
-            />
+            <EditText
+                android:id="@+id/cvEditPrefJob"
+                android:layout_columnWeight="4" />
 
-        <TextView
-            android:text="Additional Information"
-            android:layout_columnWeight="1"
-            android:layout_height="30dp"
-            />
+            <TextView
+                android:layout_columnWeight="1"
+                android:text="CV Details" />
 
-        <EditText
-            android:id="@+id/cvEditAddInfo"
-            android:layout_columnWeight="4"
-            android:layout_height="60dp"
-            android:singleLine="false"
-            />
+            <EditText
+                android:id="@+id/cvEditDetails"
+                android:layout_columnWeight="4" />
+
+            <TextView
+                android:layout_height="30dp"
+                android:layout_columnWeight="1"
+                android:text="Additional Information" />
+
+            <EditText
+                android:id="@+id/cvEditAddInfo"
+                android:layout_height="60dp"
+                android:layout_columnWeight="4"
+                android:singleLine="false" />
 
 
-    </GridLayout>
+        </GridLayout>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="80dp"
-        android:text="Apply" />
+    </RelativeLayout>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="80dp"
+            android:text="Apply" />
+
+
 
 
 </LinearLayout>
