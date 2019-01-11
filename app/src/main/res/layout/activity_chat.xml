@@ -22,6 +22,9 @@
         tools:layout_editor_absoluteX="112dp"
         tools:layout_editor_absoluteY="61dp" />
 
+
+    //message input
+
     <EditText
         android:id="@+id/EtMessage"
         android:layout_width="315dp"
@@ -34,6 +37,8 @@
         android:textSize="15sp"
         tools:layout_editor_absoluteX="50dp"
         tools:layout_editor_absoluteY="182dp" />
+
+    //button link with email
 
     <ImageButton
         android:id="@+id/linktoGmail"

@@ -33,33 +33,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <EditText
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="20dp"
-                android:text="Student Details"/>
+                android:hint="Student Details"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <EditText
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="20dp"
-                android:text="Course Details "/>
+                android:hint="Course Details "/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <EditText
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="20dp"
-                android:text="Preferred Job" />
+                android:hint="Preferred Job" />
 
         </TableRow>
 

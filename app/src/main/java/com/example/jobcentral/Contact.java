@@ -8,8 +8,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+/**
+ * Contact page is for user to check the FAQ and contact with JobCentral Team.
+ */
+
+
 public class Contact extends AppCompatActivity {
 
+
+    //send email button
     EditText Et_message;
     ImageButton linkButton;
 
@@ -22,6 +29,8 @@ public class Contact extends AppCompatActivity {
         Et_message = (EditText)findViewById(R.id.EtMessage);
         linkButton = (ImageButton)findViewById(R.id.linktoGmail);
     }
+
+    // button to send message by E-mail
 
     private void linktoGoogle(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://accounts.google.com/ServiceLogin/signinchooser?flowName=GlifWebSignIn&flowEntry=ServiceLogin"));

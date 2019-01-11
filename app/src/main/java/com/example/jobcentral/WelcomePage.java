@@ -18,6 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Welcome page for user to select the signUp or Login by different users
+ */
+
+
 public class WelcomePage extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -32,6 +37,8 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
     FirebaseDatabase dbJobCentral = FirebaseDatabase.getInstance();
     FirebaseDatabase dbTest = FirebaseDatabase.getInstance();
     DatabaseReference mPostRef;
+
+    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

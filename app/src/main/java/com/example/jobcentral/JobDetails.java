@@ -3,13 +3,20 @@ package com.example.jobcentral;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+/**
+ * JobDetail page shows the informations of job, which can apply by user.
+ */
+
 
 public class JobDetails extends AppCompatActivity {
 
 
-    private TextView
+    private EditText
             tooolbar_text,
             tool_job_name,
             txt_job_description,

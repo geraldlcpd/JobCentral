@@ -22,6 +22,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * SignUp by Recruiter
+ */
+
+
 public class NewRecruiterSignUp extends AppCompatActivity {
 
     private static final String TAG = "NewRecruiterSignUp";

@@ -5,6 +5,10 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
 import java.util.Map;
+/**
+ * Data for users' sign up infos
+ */
+
 
 @IgnoreExtraProperties
 public class DataGet

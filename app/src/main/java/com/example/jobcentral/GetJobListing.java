@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @IgnoreExtraProperties
+
 public class GetJobListing {
     // DBParameter :
     // company, title, country, postal, contact, require, description, address

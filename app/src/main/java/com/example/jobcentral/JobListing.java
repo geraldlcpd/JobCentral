@@ -16,6 +16,10 @@ import android.widget.SearchView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * JobListing page is list the job, for jobseekers to seem
+ */
+
 public class JobListing extends AppCompatActivity {
 
     ListView job_listing;

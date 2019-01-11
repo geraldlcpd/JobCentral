@@ -8,6 +8,11 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Home page is shown the functions for user to to go another page.
+ */
+
+
 public class HomePage extends AppCompatActivity {
 
     private Button cCVList, cCVBox, cJChat, cJSignOut;
@@ -16,6 +21,9 @@ public class HomePage extends AppCompatActivity {
     static String type;
 
     // R: btnBod, btnJobPost, btnChat, btnSignOut
+
+    // !!Two layout for two users
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +36,8 @@ public class HomePage extends AppCompatActivity {
             loadRecruiter();
         }
 
-
-
-
-
-
-
-
-
-
     }
+
     private void loadRecruiter()
     {
         cCVList = findViewById(R.id.btnCVList);
@@ -70,6 +70,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
+
 
     private void loadJobSeeker()
     {
@@ -105,11 +106,15 @@ public class HomePage extends AppCompatActivity {
 
     }
 
+    //button move to JobPosting page
     private void moveToJobPost()
     {
         mToJobPost = new Intent(HomePage.this, JobPosting.class);
         startActivity(mToJobPost);
+
     }
+
+    //button move to New Login page
     private void signOut() {
         Intent intent = new Intent(HomePage.this, NewLoginActivity.class);
         WelcomePage.reqSignOut();
@@ -117,16 +122,21 @@ public class HomePage extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
     }
 
+    //button move to Contact page
+
     private void openChat() {
         Intent intent = new Intent(HomePage.this, Contact.class);
         startActivity(intent);
     }
 
+    //button move to CV submition page
     private void openCVBOX() {
         Intent intent = new Intent(this, CVSubmission.class);
         startActivity(intent);
     }
 
+
+    //button to joblisting
     private void openBillBoard() {
         Intent intent = new Intent(this, JobListing.class);
         startActivity(intent);

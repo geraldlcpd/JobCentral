@@ -3,6 +3,7 @@ package com.example.jobcentral;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 // [START blog_user_class]
+
 public class JobPost
 {
     String company, title, country, postal, contact, req, desc, address;

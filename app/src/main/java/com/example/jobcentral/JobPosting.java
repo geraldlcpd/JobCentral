@@ -12,6 +12,11 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * JobListing page for business owner to submit a job offer
+ */
+
+
 public class JobPosting extends AppCompatActivity {
 
 
