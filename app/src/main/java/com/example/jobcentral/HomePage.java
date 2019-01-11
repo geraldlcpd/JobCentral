@@ -10,47 +10,45 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
 
-    private Button cBillboard, cCVBox, cChat, cQuit;
-    private Button cPostJob;
+    private Button cCVList, cCVBox, cJChat, cJSignOut;
+    private Button cPostJob, cBoard, cRSignOut, cRChat;
     Intent mToJobPost;
     static String type;
 
+    // R: btnBod, btnJobPost, btnChat, btnSignOut
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(type.equals("j"))
+        if(type.equals("j")) {
             setContentView(R.layout.activity_home_page_jobseeker);
-        else
+            loadJobSeeker();
+        }
+        else {
             setContentView(R.layout.activity_home_page_recruiter);
+            loadRecruiter();
+        }
 
-        cBillboard =(Button) findViewById(R.id.btnBod);
-        cCVBox = (Button) findViewById(R.id.btnCV);
-        cChat =(Button) findViewById(R.id.btnChat);
-        cQuit = (Button) findViewById(R.id.btnQuit);
+
+
+
+
+
+
+
+
+
+    }
+    private void loadRecruiter()
+    {
+        cCVList = findViewById(R.id.btnCVList);
         cPostJob = findViewById(R.id.btnJobPost);
+        cRSignOut = findViewById(R.id.btnRSignOut);
+        cRChat = findViewById(R.id.btnRChat);
 
-        cBillboard.setOnClickListener(new View.OnClickListener() {
+        cCVList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openBillBoard();
-            }
-        });
-        cCVBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCVBOX();
-            }
-        });
-        cChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openChat();
-            }
-        });
-        cQuit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
             }
         });
         cPostJob.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +57,51 @@ public class HomePage extends AppCompatActivity {
                 moveToJobPost();
             }
         });
+        cRChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openChat();
+            }
+        });
+        cRSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
+    }
 
+    private void loadJobSeeker()
+    {
+        cBoard = findViewById(R.id.btnBoard);
+        cCVBox = (Button) findViewById(R.id.btnCVBox);
+        cJChat =(Button) findViewById(R.id.btnJChat);
+        cJSignOut = (Button) findViewById(R.id.btnJSignOut);
+
+        cJChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openChat();
+            }
+        });
+        cJSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
+        cCVBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCVBOX();
+            }
+        });
+        cBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openBillBoard();
+            }
+        });
 
     }
 

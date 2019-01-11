@@ -31,6 +31,8 @@
         <activity android:name=".NewLoginActivity" />
         <activity android:name=".JobListing" />
         <activity android:name=".JobDetails" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".JobPosting" />
         <activity android:name=".JobPostingConfirm" />
         <activity android:name=".HomePage"></activity>
     </application>

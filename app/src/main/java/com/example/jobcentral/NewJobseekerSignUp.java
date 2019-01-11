@@ -1,8 +1,11 @@
 package com.example.jobcentral;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -111,7 +114,26 @@ public class NewJobseekerSignUp extends AppCompatActivity {
         System.out.println("txUID2: " + txUID);
         UserSignUp userSignUp = new UserSignUp(txFN, txLN, txEmail, txPW, "jobseeker");
         mDatabase.child("user").child(txUID).setValue(userSignUp);
-        Toast.makeText(NewJobseekerSignUp.this, "Sign Up Success", Toast.LENGTH_SHORT).show();
+
+        AlertDialog.Builder signUpSuccess = new AlertDialog.Builder(NewJobseekerSignUp.this, android.R.style.Theme_Material_Dialog_Alert);
+
+        signUpSuccess.setTitle("Sign up as recruiter Success").setMessage("Welcome to Job Central");
+        signUpSuccess.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        signUpSuccess.setNegativeButton("LOGIN", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(NewJobseekerSignUp.this, NewLoginActivity.class));
+                FirebaseAuth.getInstance().signOut();
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertSUJ = signUpSuccess.create();
+        alertSUJ.show();
     }
 
     @Override

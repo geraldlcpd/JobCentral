@@ -32,14 +32,14 @@
         android:gravity="center_horizontal">
 
         <Button
-            android:id="@+id/btnBod"
+            android:id="@+id/btnBoard"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:text="Billboard"
             android:paddingRight="10dp"/>
 
         <Button
-            android:id="@+id/btnCV"
+            android:id="@+id/btnCVBox"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:text="CV BOX"
@@ -53,14 +53,14 @@
         android:gravity="center_horizontal">
 
         <Button
-            android:id="@+id/btnChat"
+            android:id="@+id/btnJChat"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:text="Chatting"
             android:paddingRight="10dp"/>
 
         <Button
-            android:id="@+id/btnQuit"
+            android:id="@+id/btnJSignOut"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:text="SIGN OUT"
