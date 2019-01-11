@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Random;
 
 public class JobPostingConfirm extends AppCompatActivity {
 
@@ -15,6 +18,7 @@ public class JobPostingConfirm extends AppCompatActivity {
     static TextView tCompany, tTitle, tCountry, tPostal, tContact, tReq, tDesc, tAddress;
     DatabaseReference mDatabase;
     Button btnConfirm;
+    String genString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +41,30 @@ public class JobPostingConfirm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 JobPost jobPost = new JobPost(gComp, gTitle, gCountry, gPostal, gContact, gReq, gDesc, gAddress);
-                mDatabase.child("msg").child("jobsample").setValue(jobPost);
+                genString = generateUID();
+                mDatabase.child("jobs").child(genString).setValue(jobPost);
+                Toast.makeText(JobPostingConfirm.this, "Job has been Posted", Toast.LENGTH_SHORT).show();
                 // TODO : Change the message sample to real path after testing is done
             }
         });
 
-        ;
 
+    }
+    String generateUID()
+    {
+        int leftLimit = 65; // letter '0'
+        int rightLimit = 90; // letter 'z'
+        int targetStringLength = 20;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        String generatedString = buffer.toString();
+
+        return generatedString;
     }
     public void setTVData()
     {

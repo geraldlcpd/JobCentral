@@ -53,7 +53,9 @@
 
         <EditText
             android:id="@+id/jpEditCode"
-            android:layout_columnWeight="4" />
+            android:layout_columnWeight="4"
+            android:inputType="number"
+            android:maxLength="8"/>
 
         <TextView
             android:layout_columnWeight="1"
@@ -65,7 +67,9 @@
 
         <TextView
             android:layout_columnWeight="1"
-            android:text="Contact Number" />
+            android:text="Contact Number"
+            android:inputType="number"
+            android:maxLength="12"/>
 
         <EditText
             android:id="@+id/jpEditPhone"
@@ -99,7 +103,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:text="APPLY" />
+        android:layout_marginTop="10dp"
+        android:text="POST JOB DETAILS" />
 
 
 </LinearLayout>
