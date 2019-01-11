@@ -26,7 +26,7 @@ public class NewJobseekerSignUp extends AppCompatActivity {
     TextInputEditText inRFN, inRLN, inREmail, inRPW, inRCPW;
     CheckBox boxTNC;
     Button bSignUp;
-    String txFN, txLN, txEmail, txPW, txCPW, txUN;
+    String txFN, txLN, txEmail, txPW, txCPW;
     String txUID;
     DatabaseReference mDatabase;
 
@@ -79,9 +79,6 @@ public class NewJobseekerSignUp extends AppCompatActivity {
                 boxTNC.setTextColor(Color.RED);
                 Toast.makeText(getApplicationContext(), "Please Accept Terms and Conditions", Toast.LENGTH_SHORT).show();
             }
-            else {
-
-            }
         }
     }
 
@@ -121,7 +118,7 @@ public class NewJobseekerSignUp extends AppCompatActivity {
     public void onDestroy()
     {
         super.onDestroy();
-        mAuthJob.signOut();
+        FirebaseAuth.getInstance().signOut();
     }
 
 }

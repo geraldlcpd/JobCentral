@@ -22,7 +22,7 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
 
 
     Button btnLogin, btnJobseeker, btnRecruiter,btnGo;
-    Intent moveToLogin, moveToJobseeker, moveToRecruiter,moveToGo;
+    Intent moveToLogin, moveToJobseeker, moveToRecruiter;
 
     private static final String TAG = "WelcomePage";
     public static final String EXTRA_POST_KEY = "post_key";
@@ -32,10 +32,6 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
     FirebaseDatabase dbJobCentral = FirebaseDatabase.getInstance();
     FirebaseDatabase dbTest = FirebaseDatabase.getInstance();
     DatabaseReference mPostRef;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +47,13 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
         String getData = refTest.child("1Username").toString();
         System.out.println("setTVData Variable: " + getData);
 
-
-
         btnJobseeker = findViewById(R.id.btnJobSeek);
         btnRecruiter = findViewById(R.id.btnRecruit);
         btnLogin = findViewById(R.id.loginBtn);
-        btnGo = findViewById(R.id.btn_go);
 
         moveToLogin = new Intent(this, NewLoginActivity.class);
         moveToJobseeker = new Intent(this, NewJobseekerSignUp.class);
         moveToRecruiter = new Intent(this, NewRecruiterSignUp.class);
-        moveToGo = new Intent(this,HomePage.class);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,12 +71,6 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 startActivity(moveToRecruiter);
-            }
-        });
-        btnGo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(moveToGo);
             }
         });
     }

@@ -26,15 +26,13 @@ public class NewRecruiterSignUp extends AppCompatActivity {
     TextInputEditText inRFN, inRLN, inREmail, inRPW, inRCPW;
     CheckBox boxTNC;
     Button bSignUp;
-    String txFN, txLN, txEmail, txPW, txCPW, txUN;
+    String txFN, txLN, txEmail, txPW, txCPW;
     String txUID;
     DatabaseReference mDatabase;
-    FirebaseUser rUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.activity_sign_up_recruiter);
 
@@ -56,9 +54,9 @@ public class NewRecruiterSignUp extends AppCompatActivity {
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 checkValid();
                 transferToDB();
-                dbInput();
             }
         });
     }
@@ -95,6 +93,7 @@ public class NewRecruiterSignUp extends AppCompatActivity {
                 {
                     Log.d(TAG,"createUserWithEmail: success" );
                     System.out.println("createUserWithEmail: success");
+                    dbInput();
                 }
                 else
                 {
@@ -115,14 +114,13 @@ public class NewRecruiterSignUp extends AppCompatActivity {
         System.out.println("txUID2: " + txUID);
         UserSignUp userSignUp = new UserSignUp(txFN, txLN, txEmail, txPW, "recruiter");
         mDatabase.child("user").child(txUID).setValue(userSignUp);
-
     }
 
     @Override
     public void onDestroy()
     {
         super.onDestroy();
-        mAuthRec.signOut();
+        FirebaseAuth.getInstance().signOut();
     }
 }
 

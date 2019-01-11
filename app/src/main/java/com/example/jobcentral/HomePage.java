@@ -62,17 +62,17 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void openChat() {
-        Intent intent = new Intent(this, ChatActivity.class);
-        openChat();
+        Intent intent = new Intent(HomePage.this, ChatActivity.class);
+        startActivity(intent);
     }
 
     private void openCVBOX() {
         Intent intent = new Intent(this, CVSubmission.class);
-        openCVBOX();
+        startActivity(intent);
     }
 
     private void openBillBoard() {
         Intent intent = new Intent(this, JobListing.class);
-        openBillBoard();
+        startActivity(intent);
     }
 }
